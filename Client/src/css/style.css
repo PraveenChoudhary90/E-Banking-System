@@ -1,0 +1,53 @@
+#footer{
+    padding: 100px;
+    background-color: blue;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+.maindata{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-image: url("bankpic.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#header{
+    background-color: lightslategray;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    text-transform: uppercase;
+    color:black;
+}
+#myform{
+    margin: auto;
+    width: 500px;
+    font-size: 20px;
+    border: 1px solid black;
+    padding: 20px;
+    background-color:wheat;
+    box-shadow: 0px 0px 9px;
+    border-radius: 30px;
+
+}
+
+#myformdata{
+    width: 50%;
+    margin: auto;
+    font-size: 22px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 9px;
+    padding: 20px;
+    background-color: lightskyblue;
+    border-radius: 30px;
+    /* background-image: url("pic1.jpg"); */
+
+}
+#dash{
+    background-color: lightcyan;
+    padding: 30px;
+    display: flex;
+}
