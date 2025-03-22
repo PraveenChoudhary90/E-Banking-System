@@ -19,13 +19,14 @@ function Home() {
     try {
       const response = await axios.post(api, {email:email, password:password});
       console.log(response.data);
-      toast("You are Login Successfully")
       localStorage.setItem("username", response.data.firstname+" "+response.data.lastname);
       localStorage.setItem("email", response.data.email);
       localStorage.setItem("userid", response.data._id);
       navigate("/dashboard")
+      toast.success(response.data.msg);
+      // alert("Login Successfully");
     } catch (error) {
-     toast.error(error.response.data.msg) 
+     toast.error(error.response.data.msg);
     }
   }
 
@@ -50,7 +51,7 @@ function Home() {
       <h5>If You Dont't have Account <button style={{borderRadius:"30px"}}><Link  to="/registration" style={{textDecoration:"none"}} >Click Here Open Account</Link> </button></h5>
     </Form>
    </div>
-          <ToastContainer />
+    <ToastContainer />
    
     
     </>

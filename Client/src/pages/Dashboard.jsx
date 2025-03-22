@@ -46,6 +46,7 @@ const navigate = useNavigate()
     const logout = ()=>{
         navigate("/home")
         localStorage.clear()
+        alert("Your are Logout Succefully")
        
     }
     useEffect(()=>{
