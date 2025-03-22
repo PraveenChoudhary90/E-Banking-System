@@ -91,9 +91,110 @@ const balanceDisplay = async (req, res) => {
   res.status(200).send(balance);
 };
 
+
+
+const ResetPasword=async(req,res)=>{
+    // console.log(req.body);
+    const {
+        userid,
+        oldpassword,
+        newpassword,
+        confomepass
+      }=req.body;
+      try {
+        let finddata =await custmor_model.findById(userid);
+        const passwordMatching = await bcrypt.compare(oldpassword, finddata.accountpassword);
+        if (!passwordMatching) {
+            // console.log(passwordMatching);
+            return res.status(400).send({ msg: "Invalid password!" });
+        }
+       
+                  let salt =await bcrypt.genSalt(10);
+                  let hasPassword=await bcrypt.hash(newpassword,salt);
+             let updataPassword =await custmor_model.findByIdAndUpdate(userid,{accountpassword:hasPassword})
+               res.status(200).send({msg:"Your pasword is Reset it..!!"})
+      
+       
+      } catch (error) {
+        res.status(500).send({msg:"Server Error"})
+      }  
+}
+
+
+
+const AmountStatement=async(req,res)=>{
+    // console.log(req.body);
+    const { userid }=req.body;
+    try {
+        // const findData=await amount_Model.find({CustmerId:userid}).sort({date:-1})
+        const findData=await amount_Model.find({CustmerId:userid})
+        // console.log(findData)
+        res.status(200).send(findData)
+    } catch (error) {
+        res.status(500).send({msg:"server Error"})
+    }
+    
+}
+
+
+
+const MiniStatement=async(req,res)=>{
+    // console.log(req.body);
+    const { userid }=req.body;
+    try {
+        const findData=await amount_Model.find({CustmerId:userid}).sort({date:-1}).limit(8);
+        // console.log(findData)
+        res.status(200).send(findData)
+    } catch (error) {
+        res.status(500).send({msg:"server Error"})
+    }
+  
+}
+
+
+const SearchStatement=async(req,res)=>{
+    console.log(req.body);
+    const { userid ,enddate, startdate}=req.body;
+    try {
+        // let findData =await amount_Model.find({
+        //     $and: [
+        //       {
+        //     $and: [
+        //       { From: { $gte: startdate } },
+        //       { To: { $lte: enddate } },
+        //     ],    // and operator body finishes
+        //     },
+        //       { CustmerId:userid},
+        //     ], //Or operator body finishes
+        //   }).sort({date:-1})
+
+
+        let findData =await amount_Model.find({    
+                $and: [
+                    {"date":{ $gte: startdate ,
+                    $lte: enddate }},
+                  { CustmerId:userid}
+                ],
+              })
+        //   console.log(!findData)
+          if(!findData){
+            console.log("no")
+            return res.status(400).send({msg:"false"})
+          }
+           res.status(200).send({msg:"true"})
+    } catch (error) {
+        res.status(500).send({msg:"server error"})
+    }
+    
+}
+
 module.exports = {
   InsertUserData,
   CustomerLoginData,
   SubmitCashData,
   balanceDisplay,
+    ResetPasword,
+    AmountStatement,
+    MiniStatement,
+    SearchStatement
 };

@@ -11,6 +11,7 @@ import ResetPassword from "./pages/ResetPassword"
 import BalanceInquiry from "./pages/BalanceInquiry"
 import AccountStatement from "./pages/AccountStatement"
 import MiniStatement from "./pages/MiniStatement"
+import Profile from "./pages/Profile"
 
 function App() {
   
@@ -35,6 +36,7 @@ function App() {
       <Route path="balanceinquiry" element={<BalanceInquiry/>}/>
       <Route path="accountstatement" element={<AccountStatement/>}/>
       <Route path="ministatement" element={<MiniStatement/>}/>
+      <Route path="profile" element={<Profile/>}/>
       </Route>
     </Routes>
     </BrowserRouter>

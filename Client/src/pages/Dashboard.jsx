@@ -71,6 +71,7 @@ const navigate = useNavigate()
           <Nav.Link as={Link} to="submitcash">Submit Cash Amount</Nav.Link>
           <Nav.Link as={Link} to="withdrawcash">Withdrawal Amount</Nav.Link>
           <Nav.Link as={Link} to="ministatement">Mini Statement</Nav.Link>
+          <Nav.Link as={Link} to="profile">Profile</Nav.Link>
           <Nav.Link as={Link} to="reset">Reset Password</Nav.Link>
         </Nav>
       </Navbar.Collapse>
