@@ -24,7 +24,7 @@ function Login() {
       localStorage.setItem("userid", response.data._id);
       navigate("/dashboard")
       toast.success(response.data.msg);
-      // alert("Login Successfully");
+      alert("Login Successfully");
     } catch (error) {
      toast.error(error.response.data.msg);
     }

@@ -62,7 +62,7 @@ const navigate = useNavigate()
       <Navbar.Toggle aria-controls="navbarSupportedContent" />
       <Navbar.Brand href="#">
       <div id='logoimg'>
-        <img src="e.jpeg" alt="" height="40px" /> <span><h1>Banking</h1></span>
+        <img src="e.jpeg" alt="" height="40px" /> <span><h1>SBI-BANK</h1></span>
     </div>
       </Navbar.Brand>
       <Navbar.Collapse id="navbarSupportedContent">
