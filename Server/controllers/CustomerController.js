@@ -93,17 +93,15 @@ const balanceDisplay = async (req, res) => {
 
 
 
-const AmountStatement=async(req,res)=>{
-    // console.log(req.body);
+const AccountStatement=async(req,res)=>{
     const { userid }=req.body;
     try {
         // const findData=await amount_Model.find({CustmerId:userid}).sort({date:-1})
         const Amount=await transactionModel.find({CustmerId:userid}).sort({date:-1}).limit(10);
-        // console.log(findData)
         const Balance= await transactionModel.find({customerid:userid})
         res.status(200).send({Amount:Amount, Balance:Balance});
     } catch (error) {
-        res.status(500).send({msg:"server Error"})
+        res.status(400).send({msg:"server Error"})
     }
     
 }
@@ -178,8 +176,8 @@ module.exports = {
   CustomerLoginData,
   SubmitCashData,
   balanceDisplay,
+  AccountStatement,
     resetPassword,
-    AmountStatement,
    MiniStatement,
    ProfilePage
 };
