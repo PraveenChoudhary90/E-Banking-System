@@ -9,7 +9,7 @@ route.post("/transaction" , CustomerController.SubmitCashData)
 route.get("/balance" , CustomerController.balanceDisplay)
 route.post('/Statement',CustomerController.Statement);
 route.post('/resetpassword', CustomerController.resetPassword)
-
+route.post("/profile",CustomerController.ProfilePage)
 
 
 

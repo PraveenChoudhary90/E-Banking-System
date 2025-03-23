@@ -146,6 +146,20 @@ const AmountStatement=async(req,res)=>{
       }  
     }
 
+
+    const ProfilePage=async(req,res)=>{
+    // console.log(req.body)
+    const { userid }=req.body;
+    try {
+        let data =await CustomerModel.findById(userid)
+        // console.log(data)
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(500).send("server error");
+    }
+    
+}
+
 module.exports = {
   InsertUserData,
   CustomerLoginData,
@@ -153,5 +167,6 @@ module.exports = {
   balanceDisplay,
     resetPassword,
     AmountStatement,
-   Statement
+   Statement,
+   ProfilePage
 };
