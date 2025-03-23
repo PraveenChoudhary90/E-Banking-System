@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import BASE_URL from '../config/config';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+
 const SubmitCash = () => {
   const[amount  ,setAmount] = useState("")
   const customerid = localStorage.getItem("userid")
@@ -11,9 +13,11 @@ const handleSubmit = async(e)=>{
        let api = `${BASE_URL}/BankData/transaction`
        const res =await axios.post(api , {amount : amount , status : "credited" ,customerid : customerid })
        console.log(res.data)
-       alert("Amount credited successfully")
+       toast.success("Amount credited successfully")
 }
   return (
+    <>
+    
     <Container className="mt-5">
       <Row className="justify-content-center">
         <Col xs={12} sm={8} md={6} lg={4}>
@@ -37,7 +41,11 @@ const handleSubmit = async(e)=>{
         </Col>
       </Row>
     </Container>
+       <ToastContainer />
+    </>
+    
   );
+  
 };
 
 export default SubmitCash;

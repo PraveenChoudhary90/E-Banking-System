@@ -93,33 +93,26 @@ const balanceDisplay = async (req, res) => {
 
 
 
-const ResetPasword=async(req,res)=>{
-    // console.log(req.body);
-    const {
-        userid,
-        oldpassword,
-        newpassword,
-        confomepass
-      }=req.body;
-      try {
-        let finddata =await custmor_model.findById(userid);
-        const passwordMatching = await bcrypt.compare(oldpassword, finddata.accountpassword);
-        if (!passwordMatching) {
-            // console.log(passwordMatching);
-            return res.status(400).send({ msg: "Invalid password!" });
-        }
-       
-                  let salt =await bcrypt.genSalt(10);
-                  let hasPassword=await bcrypt.hash(newpassword,salt);
-             let updataPassword =await custmor_model.findByIdAndUpdate(userid,{accountpassword:hasPassword})
-               res.status(200).send({msg:"Your pasword is Reset it..!!"})
-      
-       
-      } catch (error) {
-        res.status(500).send({msg:"Server Error"})
-      }  
+//Reset Password
+const resetPassword=async(req,res)=>{
+try {
+  const {oldPassword,newPassword,id}=req.body;
+const passwordMatch= await CustomerModel.findById(id, oldPassword, User.password)
+if (!passwordMatch)
+{
+  return res.status(400).send("Invalid Old Password!");
+}
+else
+{
+  await CustomerModel.findByIdAndUpdate(id,{password:newPassword});
 }
 
+res.send("Reset Password");
+} catch (error) {
+  res.status(500).send("Something went wrong")
+}  
+
+}
 
 
 const AmountStatement=async(req,res)=>{
@@ -127,7 +120,7 @@ const AmountStatement=async(req,res)=>{
     const { userid }=req.body;
     try {
         // const findData=await amount_Model.find({CustmerId:userid}).sort({date:-1})
-        const findData=await amount_Model.find({CustmerId:userid})
+        const findData=await transactionModel.find({CustmerId:userid})
         // console.log(findData)
         res.status(200).send(findData)
     } catch (error) {
@@ -138,63 +131,27 @@ const AmountStatement=async(req,res)=>{
 
 
 
-const MiniStatement=async(req,res)=>{
-    // console.log(req.body);
-    const { userid }=req.body;
-    try {
-        const findData=await amount_Model.find({CustmerId:userid}).sort({date:-1}).limit(8);
-        // console.log(findData)
-        res.status(200).send(findData)
-    } catch (error) {
-        res.status(500).send({msg:"server Error"})
-    }
-  
-}
-
-
-const SearchStatement=async(req,res)=>{
-    console.log(req.body);
-    const { userid ,enddate, startdate}=req.body;
-    try {
-        // let findData =await amount_Model.find({
-        //     $and: [
-        //       {
-        //     $and: [
-        //       { From: { $gte: startdate } },
-        //       { To: { $lte: enddate } },
-        //     ],    // and operator body finishes
-        //     },
-        //       { CustmerId:userid},
-        //     ], //Or operator body finishes
-        //   }).sort({date:-1})
-
-
-        let findData =await amount_Model.find({    
-                $and: [
-                    {"date":{ $gte: startdate ,
-                    $lte: enddate }},
-                  { CustmerId:userid}
-                ],
-              })
-        //   console.log(!findData)
-          if(!findData){
-            console.log("no")
-            return res.status(400).send({msg:"false"})
+      //Statement between two dates
+    const Statement=async(req,res)=>{
+      try {
+        const {id, start, end} = req.body;
+        const user = await transactionModel.findOne({coustoID: id}).populate({
+          match: {
+            createdAt: { $gte: new Date(start), $lte: new Date(end).setHours(23, 59, 59, 999) }
           }
-           res.status(200).send({msg:"true"})
-    } catch (error) {
-        res.status(500).send({msg:"server error"})
+        })
+        res.status(200).send(user);
+      } catch (error) {
+        res.status(500).send("Something went wrong")
+      }  
     }
-    
-}
 
 module.exports = {
   InsertUserData,
   CustomerLoginData,
   SubmitCashData,
   balanceDisplay,
-    ResetPasword,
+    resetPassword,
     AmountStatement,
-    MiniStatement,
-    SearchStatement
+   Statement
 };

@@ -27,8 +27,8 @@ const AccountStatement = () => {
       <>
          <tr key={index}>
                           <td>{index + 1}</td>
-                          <td style={{color :"green"}}>{e.status === 'credited' ? e.amount : ''}</td>
-                          <td style={{color :"red"}}>{e.status === 'Debited' ? e.amount : ''}</td>
+                          <td style={{color :"green"}}>{e.status === 'credited' ? e.amount : '---'}</td>
+                          <td style={{color :"red"}}>{e.status === 'Debited' ? e.amount : '---'}</td>
                           <td style={{fontSize : "20px"}}>{e.status}</td>
                           <td>{e.date}</td>
                         </tr>
@@ -41,11 +41,13 @@ const AccountStatement = () => {
        <Table striped bordered hover>
       <thead>
         <tr>
+          <th>sno</th>
           <th>Credit</th>
           <th>Debit</th>
-          <th>Description</th>
           <th>Status</th>
           <th>Date</th>
+          {/* <th>Description</th> */}
+
         </tr>
       </thead>
       <tbody>
