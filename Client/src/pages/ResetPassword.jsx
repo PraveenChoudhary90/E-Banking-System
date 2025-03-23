@@ -7,19 +7,23 @@ const ResetPassword=()=>{
     const [oldPassword,setOldPassword]=useState("");
     const [newPassword,setNewPassword]=useState("");
     const [renewPassword,setreNewPassword]=useState("");
+
+
+
     const handleSubmit=async(e)=>{
         e.preventDefault();
- if(newPassword!=renewPassword){
-toast.error("New Password does not match"); 
-}
-else{
+     if(newPassword!=renewPassword){
+     toast.error("New Password does not match"); 
+    }
+    else{
     let api=`${BASE_URL}/BankData/resetpassword`;
     try {
-        const response = await axios.post(api, { oldPassword,newPassword,id:localStorage.getItem("id") });
-        toast.success(response.data);
+        const response = await axios.post(api, {oldPassword:oldPassword,newPassword:newPassword, 
+            renewPassword:renewPassword,userid:localStorage.getItem("userid") });
+        toast.success(response.data.msg);
     }
     catch (error) {
-        toast.error(error.response.data);
+        toast.error(error.response.data.msg);
     }
     }
 }
@@ -32,7 +36,7 @@ else{
             <input type="password" value={oldPassword} onChange={(e)=>setOldPassword(e.target.value)}/><br/>
             <label>New Password:</label><br/>
             <input type="password" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)}/><br/>
-            <label>Re enter New Password:</label><br/>
+            <label>Re-Enter New Password:</label><br/>
             <input type="password" value={renewPassword} onChange={(e)=>setreNewPassword(e.target.value)}/><br/>
             <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
         </form>

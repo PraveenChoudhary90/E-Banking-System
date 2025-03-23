@@ -7,7 +7,7 @@ route.post("/InsertData", CustomerController.InsertUserData );
 route.post("/CustomerLogin", CustomerController.CustomerLoginData);
 route.post("/transaction" , CustomerController.SubmitCashData)
 route.get("/balance" , CustomerController.balanceDisplay)
-route.post('/Statement',CustomerController.Statement);
+route.post('/ministatement',CustomerController.MiniStatement);
 route.post('/resetpassword', CustomerController.resetPassword)
 route.post("/profile",CustomerController.ProfilePage)
 

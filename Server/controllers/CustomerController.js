@@ -93,36 +93,15 @@ const balanceDisplay = async (req, res) => {
 
 
 
-//Reset Password
-const resetPassword=async(req,res)=>{
-try {
-  const {oldPassword,newPassword,id}=req.body;
-const passwordMatch= await CustomerModel.findById(id, oldPassword, User.password)
-if (!passwordMatch)
-{
-  return res.status(400).send("Invalid Old Password!");
-}
-else
-{
-  await CustomerModel.findByIdAndUpdate(id,{password:newPassword});
-}
-
-res.send("Reset Password");
-} catch (error) {
-  res.status(500).send("Something went wrong")
-}  
-
-}
-
-
 const AmountStatement=async(req,res)=>{
     // console.log(req.body);
     const { userid }=req.body;
     try {
         // const findData=await amount_Model.find({CustmerId:userid}).sort({date:-1})
-        const findData=await transactionModel.find({CustmerId:userid})
+        const Amount=await transactionModel.find({CustmerId:userid}).sort({date:-1}).limit(10);
         // console.log(findData)
-        res.status(200).send(findData)
+        const Balance= await transactionModel.find({customerid:userid})
+        res.status(200).send({Amount:Amount, Balance:Balance});
     } catch (error) {
         res.status(500).send({msg:"server Error"})
     }
@@ -132,19 +111,22 @@ const AmountStatement=async(req,res)=>{
 
 
       //Statement between two dates
-    const Statement=async(req,res)=>{
+    const MiniStatement=async(req,res)=>{
       try {
-        const {id, start, end} = req.body;
-        const user = await transactionModel.findOne({coustoID: id}).populate({
-          match: {
-            createdAt: { $gte: new Date(start), $lte: new Date(end).setHours(23, 59, 59, 999) }
-          }
-        })
+        const {customerid,startDate,endDate} =  req.body;
+        const user = await transactionModel.find({$and:
+          [{customerid:customerid},{"date":{
+           $gte: new Date(startDate),
+           $lte: new Date(endDate).setHours(23, 59, 59, 999) 
+          }}]}).sort({date:-1});
         res.status(200).send(user);
       } catch (error) {
-        res.status(500).send("Something went wrong")
+        res.status(400).send("Something went wrong")
       }  
     }
+
+
+
 
 
     const ProfilePage=async(req,res)=>{
@@ -160,6 +142,37 @@ const AmountStatement=async(req,res)=>{
     
 }
 
+
+
+
+
+//Reset Password
+const resetPassword=async(req,res)=>{
+try {
+    const { oldPassword, newPassword, renewPassword, userid } = req.body;
+
+const passwordMatch= await CustomerModel.findById(userid);
+if (passwordMatch.password!= oldPassword)
+{
+   res.status(400).send({msg:"Invalid Old Password!"});
+}
+else if(newPassword!=renewPassword){
+   res.status(400).send({msg:"Password does not match please corrct right password"})
+}
+else
+{
+  await CustomerModel.findByIdAndUpdate(userid,{password:newPassword});
+}
+
+res.status(200).send({msg:"Password SuccessFully Change"});
+} catch (error) {
+  res.status(500).send({msg:"Something went wrong"})
+}  
+
+}
+
+
+
 module.exports = {
   InsertUserData,
   CustomerLoginData,
@@ -167,6 +180,6 @@ module.exports = {
   balanceDisplay,
     resetPassword,
     AmountStatement,
-   Statement,
+   MiniStatement,
    ProfilePage
 };
