@@ -56,7 +56,9 @@ const AccountStatement = () => {
                           <td style={{color :"green"}}>{e.status === 'credited' ? e.amount : '---'}</td>
                           <td style={{color :"red"}}>{e.status === 'Debited' ? e.amount : '---'}</td>
                           <td style={{fontSize : "20px"}}>{e.status}</td>
-                          <td>{e.date}</td>
+                          {/* <td>{e.date}</td> */}
+                         <td>{new Date(e.date).toDateString()}</td>
+
                         </tr>
       </>
     )
