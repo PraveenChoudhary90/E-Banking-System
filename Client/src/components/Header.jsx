@@ -15,7 +15,7 @@ function Header() {
  <Navbar bg="primary" data-bs-theme="dark" style={{fontSize:"15px",marginTop:"20px"}}>
         <Container>
           {/* <Navbar.Brand style={{fontSize:"30px"}} as={Link} to="home">E-Banking-Site</Navbar.Brand> */}
-          <Nav className="me-auto">
+          <Nav className="me-auto" style={{backgroundColor:"black",}}>
             <Nav.Link as={Link}  to="home">Home</Nav.Link>
             <Nav.Link as={Link}  to="registration">Contact+912322232</Nav.Link>
             <Nav.Link as={Link}  to="about">About</Nav.Link>

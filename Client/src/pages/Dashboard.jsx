@@ -44,7 +44,7 @@ const Dashboard = () => {
 const navigate = useNavigate()
 
     const logout = ()=>{
-        navigate("/home")
+        navigate("/login")
         localStorage.clear()
         alert("Your are Logout Succefully")
        
@@ -52,7 +52,7 @@ const navigate = useNavigate()
     useEffect(()=>{
         if(!localStorage.getItem("email"))
             {
-                navigate("/home")
+                navigate("/login")
             }
     },[])
   return (

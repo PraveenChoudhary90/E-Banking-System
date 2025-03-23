@@ -12,6 +12,7 @@ import BalanceInquiry from "./pages/BalanceInquiry"
 import AccountStatement from "./pages/AccountStatement"
 import MiniStatement from "./pages/MiniStatement"
 import Profile from "./pages/Profile"
+import Login from "./pages/Login"
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
       <Route path="/" element={<Layout/>}>
       <Route index element={<Home/>}/>
       <Route path="home" element={<Home/>}/>
+      <Route path="login" element={<Login/>}/>
       <Route path="registration" element={<Registration/>}/>
       <Route path="about" element={<About/>}/>
       {/* <Route path="*" element={<Nopage/>}/> */}
