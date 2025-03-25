@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 function TopNav() {
   return (
       <>
+      <div id="top">
       <Navbar bg="primary" data-bs-theme="dark" style={{fontSize:"20px"}}>
         <Container>
           <Navbar.Brand style={{fontSize:"30px"}} as={Link} to="home">E-Banking-Site</Navbar.Brand>
@@ -17,7 +18,7 @@ function TopNav() {
           </Nav>
         </Container>
       </Navbar>
-
+ </div>
       
      </>
     )  

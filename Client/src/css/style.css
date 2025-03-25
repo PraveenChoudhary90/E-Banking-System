@@ -462,3 +462,222 @@
         color: red;
     }
 }
+
+@media screen and (max-width:768px) {
+    
+#about{
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+}
+#data{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+#about img{
+    width: 300px;
+    height: 300px;
+}
+#in input{
+    padding: 20px;
+    width: 300px;
+    font-size: 15px;
+    border-radius: 40px;
+
+    
+}
+#in button{
+    padding: 20px;
+    margin: 20px;
+    font-size: 15px;
+    border-radius: 40px;
+    background-color:aqua;
+
+}
+#aboutpage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding-top: 160px;
+}
+#aboutpage h1{
+    color: tomato;
+}
+#aboutpage1 img{
+    width: 300px;
+    height: 300px;
+}
+#aboutpage1{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 90px;
+    background-color: white;
+    padding-bottom: 80px;
+}
+#data1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+    
+}
+
+@media screen and (max-width:425px){
+    #footer{
+    padding: 100px;
+    background-color: blue;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    
+}
+.maindata{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-image: url("bankpic.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#top{
+ display: grid;
+ grid-template-columns: auto;
+ overflow-x: scroll;
+}
+#header{
+    background-color: lightslategray;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    text-transform: uppercase;
+    color:black;
+}
+#myform{
+    margin: auto;
+    width: 350px;
+    font-size: 20px;
+    border: 1px solid black;
+    padding: 20px;
+    background-color:wheat;
+    box-shadow: 0px 0px 9px;
+    border-radius: 30px;
+
+}
+
+#myformdata{
+    width: 390px;
+    margin: auto;
+    font-size: 22px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 9px;
+    padding: 20px;
+    background-color: lightskyblue;
+    border-radius: 30px;
+    /* background-image: url("pic1.jpg"); */
+
+}
+#dash{
+    background-color: lightcyan;
+    padding: 30px;
+    display: flex;
+}
+
+#silder{
+    margin-top: 50px;
+}
+
+#card{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+    background-color: white;
+    padding: 90px;
+}
+#card #card1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+
+}
+#card img{
+    padding-left: 80px;
+}
+
+#about{
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    flex-direction: column;
+    text-align: center;
+}
+#about img{
+    padding-left: 90px;
+    width: 300px;
+    height: 300px;
+}
+#data{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+#in input{
+    padding: 20px;
+    width: 300px;
+    font-size: 20px;
+    border-radius: 40px;
+
+    
+}
+#in button{
+    padding: 20px;
+    margin: 20px;
+    font-size: 20px;
+    border-radius: 40px;
+    background-color:aqua;
+
+}
+#aboutpage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding-top: 160px;
+}
+#aboutpage h1{
+    color: tomato;
+}
+#aboutpage1{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 90px;
+    background-color: white;
+    padding-bottom: 80px;
+    flex-direction: column;
+}
+#data1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+#logoimg{
+    display: flex;
+}
+
+    
+}
